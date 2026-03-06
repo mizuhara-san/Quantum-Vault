@@ -1,0 +1,522 @@
+@import "tailwindcss";
+
+/* =========================================================
+   QUANTUM VAULT — Premium Design System v2
+   ========================================================= */
+@theme {
+  --color-q-black: #030308;
+  --color-q-dark: #07071A;
+  --color-q-surface: #0D0D24;
+  --color-q-glass: rgba(255, 255, 255, 0.04);
+  --color-q-cyan: #00E5FF;
+  --color-q-cyan-dim: rgba(0, 229, 255, 0.15);
+  --color-q-purple: #7C3AED;
+  --color-q-violet: #A78BFA;
+  --color-q-green: #10B981;
+  --color-q-red: #F43F5E;
+  --color-q-gold: #F59E0B;
+  --color-q-border: rgba(0, 229, 255, 0.14);
+  --color-q-text: rgba(255, 255, 255, 0.88);
+  --color-q-muted: rgba(255, 255, 255, 0.45);
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+}
+
+/* ─── Reset ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #030308;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030308;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.25);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.5);
+}
+
+/* =========================================================
+   GLASSMORPHISM COMPONENTS
+   ========================================================= */
+
+/* Primary glass panel */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 20px;
+}
+
+/* Cyan-tinted glass */
+.glass-cyan {
+  background: rgba(0, 229, 255, 0.04);
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 20px;
+}
+
+/* Purple-tinted glass */
+.glass-purple {
+  background: rgba(124, 58, 237, 0.06);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 20px;
+}
+
+/* Hover glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-radius: 20px;
+  transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 229, 255, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 229, 255, 0.06);
+}
+
+/* =========================================================
+   GRADIENT TEXT
+   ========================================================= */
+.grad-cyan {
+  background: linear-gradient(135deg, #00E5FF 0%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-purple {
+  background: linear-gradient(135deg, #A78BFA 0%, #00E5FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-warm {
+  background: linear-gradient(135deg, #F59E0B 0%, #F43F5E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #00E5FF, #7C3AED);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  position: relative;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, #00E5FF, #7C3AED);
+  z-index: -1;
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before {
+  opacity: 0.6;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 229, 255, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.btn-ghost:hover {
+  background: rgba(0, 229, 255, 0.08);
+  border-color: rgba(0, 229, 255, 0.40);
+  color: #00E5FF;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+.input-glass {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  padding: 0.875rem 1rem 0.875rem 2.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  outline: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+.input-glass::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.input-glass:focus {
+  border-color: rgba(0, 229, 255, 0.55);
+  background: rgba(0, 229, 255, 0.04);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.10), inset 0 0 20px rgba(0, 229, 255, 0.03);
+}
+
+/* =========================================================
+   ANIMATED BACKGROUND
+   ========================================================= */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(3, 3, 8, 0.05) 0%,
+      rgba(3, 3, 8, 0.30) 50%,
+      rgba(3, 3, 8, 0.92) 100%);
+}
+
+/* Noise texture overlay */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* =========================================================
+   SECTION BACKGROUNDS
+   ========================================================= */
+.section-dark {
+  background: linear-gradient(180deg, #030308 0%, #07071A 50%, #030308 100%);
+}
+
+/* =========================================================
+   GLOW EFFECTS
+   ========================================================= */
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.25), 0 0 60px rgba(0, 229, 255, 0.10);
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.30), 0 0 60px rgba(124, 58, 237, 0.12);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.60), 0 0 40px rgba(0, 229, 255, 0.30);
+}
+
+/* Animated cyan border glow */
+@keyframes borderGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+    border-color: rgba(0, 229, 255, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(0, 229, 255, 0.6);
+    border-color: rgba(0, 229, 255, 0.6);
+  }
+}
+
+.border-glow-anim {
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   STRENGTH BAR
+   ========================================================= */
+.strength-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #00E5FF, #7C3AED, #A78BFA);
+  background-size: 200% 100%;
+  border-radius: 99px;
+  animation: shimmerBar 3s linear infinite;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.50);
+}
+
+@keyframes shimmerBar {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* =========================================================
+   BADGE / PILL
+   ========================================================= */
+.badge-cyan {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.22);
+  color: #00E5FF;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.badge-purple {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.30);
+  color: #A78BFA;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.badge-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  background: rgba(16, 185, 129, 0.10);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  color: #10B981;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Pulse dot */
+.dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00E5FF;
+  box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.6);
+  animation: dotPulse 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 229, 255, 0);
+  }
+}
+
+/* =========================================================
+   FLOATING PARTICLES (pure CSS)
+   ========================================================= */
+@keyframes float1 {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+@keyframes float2 {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes float3 {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+.float-1 {
+  animation: float1 8s ease-in-out infinite;
+}
+
+.float-2 {
+  animation: float2 11s ease-in-out infinite 2s;
+}
+
+.float-3 {
+  animation: float3 14s ease-in-out infinite 4s;
+}
+
+/* =========================================================
+   UPLOAD ZONE
+   ========================================================= */
+.dropzone {
+  border: 2px dashed rgba(0, 229, 255, 0.22);
+  border-radius: 20px;
+  background: rgba(0, 229, 255, 0.02);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropzone:hover,
+.dropzone.active {
+  border-color: rgba(0, 229, 255, 0.60);
+  background: rgba(0, 229, 255, 0.06);
+  box-shadow: inset 0 0 40px rgba(0, 229, 255, 0.05), 0 0 30px rgba(0, 229, 255, 0.08);
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+.display-1 {
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.display-2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Fix browser autofill overriding input glass style ─── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.5) inset !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+  caret-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 229, 255, 0.35) !important;
+  transition: background-color 9999s ease-in-out !important;
+}
+
+/* ─── Ensure Framer Motion children don't break flex layout ─── */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
